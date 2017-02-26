@@ -1,0 +1,24 @@
+{
+  "name": "GetPost",
+  "version": "1.0.0",
+  "description": "Program to test Get and Post",
+  "main": "GetPost.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+	
+  "repository":{
+	"type": "git",
+	"url": "https://github.com/shererc/CS-290-Week8"
+ };
+
+  "author": "Caleb Sherer",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.2",
+    "express-handlebars": "^2.0.1",
+    "express-session": "^1.11.3",
+    "mysql": "^2.8.0"
+  }
+}
