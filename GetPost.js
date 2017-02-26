@@ -15,17 +15,17 @@ app.use(bodyParser.urlencoded({ extend: false }));
 app.use(bodyParser.json());
 
 
-app.get('/',function(req,res){
+app.get('/get-loopback',function(req,res){
 	//create an array to be inserted
-  	var arrayP [];
-	var indexA {};
+  	var arrayP; [];
+	var indexA; {};
 	for(var param in req.query)
 	{
 		//push the value into the array
-		arrayP.push({'index': param, 'input': req.query[param]});
+		arrayP.push({'name': param, 'value': req.query[param]});
 	}
   	indexA.dataList = arrayP;
-	res.render('get', indexA;
+	res.render('get-loopback', indexA);
 });
 
 app.get('/other-page',function(req,res){
