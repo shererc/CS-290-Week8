@@ -1,24 +1,22 @@
 var express = require('express');
+var app = express();
+
+var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
 
-
-var app = express();
-var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+app.use(bodyParser.urlencoded({extend: false }));
+app.use(bodyParser.json());
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-
 //set the port to the desired port
-var uniquePort = 56665;
-app.set('port', uniquePort);
-app.use(bodyParser.urlencoded({ extend: true }));
-app.use(bodyParser.json());
+app.set('port', 56665);
 
 
 app.get('/get-loopback',function(req,res){
 	//create an array to be inserted
-  	var arrayP; [];
-	var indexA; {};
+  	var arrayP = [];
+	var indexA = {};
 	for(var param in req.query)
 	{
 		//push the value into the array
@@ -28,19 +26,15 @@ app.get('/get-loopback',function(req,res){
 	res.render('get-loopback', indexA);
 });
 
-app.get('/other-page',function(req,res){
-  res.render('other-page');
-});
+app.post('/post-loopback', function(req,res){
+	var qParams = [];
+	for(var p in req.body){
+		qParams.push({'name':p, 'value':req.body[p]})
+	}
 
-
-function genContext(){
-  var stuffToDisplay = {};
-  stuffToDisplay.time = (new Date(Date.now())).toLocaleTimeString('en-US');
-  return stuffToDisplay;
-}
-
-app.get('/time',function(req,res){
-  res.render('time', genContext());
+	var context = {};
+	context.dataList = qParams;
+	res.render('post-loopback', context);
 });
 
 app.use(function(req,res){
