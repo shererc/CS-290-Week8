@@ -11,7 +11,7 @@ app.set('view engine', 'handlebars');
 //set the port to the desired port
 var uniquePort = 56665;
 app.set('port', uniquePort);
-app.use(bodyParser.urlencoded({ extend: false }));
+app.use(bodyParser.urlencoded({ extend: true }));
 app.use(bodyParser.json());
 
 
